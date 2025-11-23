@@ -1,5 +1,11 @@
 # Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry
 
+**A ghost-free, NEC-satisfying cosmological model that replaces the Big Bang singularity with a geometric bounce.**
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17684434.svg)](https://doi.org/10.5281/zenodo.17684434)
+[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
+
 This repository contains the code and LaTeX source for the paper:
 
 **"Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry"**  
@@ -31,7 +37,7 @@ The $+1/a^2$ term from spatial curvature enables $\dot{H} > 0$ even when the NEC
 ## Files
 
 - `main.tex` - LaTeX source of the paper
-- `main.pdf` - Compiled paper with embedded figures
+- `Bouncing_Cosmology_by_Oleksandr_Kravchenko_OkMathOrg.pdf` - Compiled paper with embedded figures
 - `numerical_solution.py` - Python code for numerical solutions
 - `verify_christoffel.py` - Symbolic verification of field-space geometry
 - `bounce_closed.pdf` - Figure 1: Bounce solution
@@ -68,10 +74,6 @@ If you use this code or find this work useful, please cite:
   primaryClass = {gr-qc}
 }
 ```
-
-## License
-
-MIT License
 
 ## Contact
 
