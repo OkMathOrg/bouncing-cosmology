@@ -3,14 +3,13 @@
 **A ghost-free, NEC-satisfying cosmological model that replaces the Big Bang singularity with a geometric bounce.**
 
 [![arXiv](https://img.shields.io/badge/arXiv-2511.18522-b31b1b.svg)](https://arxiv.org/abs/2511.18522)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17684434.svg)](https://doi.org/10.5281/zenodo.17684434)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17684433.svg)](https://doi.org/10.5281/zenodo.17684433)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 
 This repository contains the code and LaTeX source for the paper:
 
-**"Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry"**  
-by Oleksandr Kravchenko
+**"Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry"** by Oleksandr Kravchenko, [OkMath Organization](https://okmath.org)
 
 ## Abstract
 
@@ -44,22 +43,24 @@ The $+1/a^2$ term from spatial curvature enables $\dot{H} > 0$ even when the NEC
 - `bounce_closed.pdf` - Figure 1: Bounce solution
 - `kinetic_suppression.pdf` - Figure 2: Kinetic suppression mechanism
 
-## Requirements
+## Dependencies and Installation
 
+* Python 3.x
+* `numpy`, `scipy`, `matplotlib` (for numerical solution)
+* `sympy` (only for symbolic verification script)
+
+**Install via pip:**
+```bash
+pip install numpy scipy matplotlib sympy
 ```
-numpy
-scipy
-matplotlib
-sympy (for verification script)
-```
 
-## Running the Code
-
+**Running the Code:**
 ```bash
 python numerical_solution.py
 ```
-
 This will generate all figures and print a summary of the bounce solution.
+
+> **Note:** Variable names in `numerical_solution.py` will confuse you 😸
 
 ## Reference
 
@@ -78,7 +79,7 @@ https://arxiv.org/abs/2511.18522
     eprint = {2511.18522},
     archivePrefix = {arXiv},
     primaryClass = {gr-qc},
-    url = {[https://arxiv.org/abs/2511.18522](https://arxiv.org/abs/2511.18522)}
+    url = {https://arxiv.org/abs/2511.18522}
 }
 ```
 
