@@ -2,8 +2,9 @@
 
 **A ghost-free, NEC-satisfying cosmological model that replaces the Big Bang singularity with a geometric bounce.**
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![arXiv](https://img.shields.io/badge/arXiv-2511.18522-b31b1b.svg)](https://arxiv.org/abs/2511.18522)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17684434.svg)](https://doi.org/10.5281/zenodo.17684434)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 
 This repository contains the code and LaTeX source for the paper:
@@ -60,18 +61,24 @@ python numerical_solution.py
 
 This will generate all figures and print a summary of the bounce solution.
 
-## Citation
+## Reference
 
-If you use this code or find this work useful, please cite:
+If you use this code in your research, please cite the following paper:
+
+**Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry** *Oleksandr Kravchenko* arXiv:2511.18522 [gr-qc]  
+https://arxiv.org/abs/2511.18522
+
+### Citation (BibTeX)
 
 ```bibtex
-@article{Kravchenko2025bounce,
-  author = {Kravchenko, Oleksandr},
-  title = {Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry},
-  year = {2025},
-  eprint = {arXiv:XXXX.XXXXX},
-  archivePrefix = {arXiv},
-  primaryClass = {gr-qc}
+@article{Kravchenko2025,
+    title = {Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry},
+    author = {Kravchenko, Oleksandr},
+    year = {2025},
+    eprint = {2511.18522},
+    archivePrefix = {arXiv},
+    primaryClass = {gr-qc},
+    url = {[https://arxiv.org/abs/2511.18522](https://arxiv.org/abs/2511.18522)}
 }
 ```
 
