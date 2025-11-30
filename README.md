@@ -1,89 +1,94 @@
-# Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry (Version 1)
+# Robust Non-Singular Bouncing Cosmology
 
-**A ghost-free, NEC-satisfying cosmological model that replaces the Big Bang singularity with a geometric bounce.**
-> *Note: This is the legacy **Exponential Metric** model (v1). It successfully demonstrates the bounce mechanism but has known limitations regarding the basin of attraction size and perturbative unitarity at large field values. These issues have been rigorously resolved in the [**Robust Sigmoid Model (v2)**](../v2).*
-
-[![arXiv](https://img.shields.io/badge/arXiv-2511.18522v1-b31b1b.svg)](https://arxiv.org/abs/2511.18522v1)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17715607.svg)](https://doi.org/10.5281/zenodo.17715607)
+[![Python 3.8.2+](https://img.shields.io/badge/python-3.8.2+-blue.svg)](https://www.python.org/downloads/)
+[![arXiv](https://img.shields.io/badge/arXiv-2511.18522-b31b1b.svg)](https://arxiv.org/abs/2511.18522)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17684433.svg)](https://doi.org/10.5281/zenodo.17684433)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 
-This repository contains the code and LaTeX source for the paper:
+**Complete numerical implementation** of a ghost-free, NEC-preserving bouncing cosmology in a **closed universe** ($k=+1$) that replaces the Big Bang singularity with a geometric bounce driven by regularized hyperbolic field space.
 
-**"Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry"** by Oleksandr Kravchenko, [OkMath Organization](https://okmath.org)
+## 🎯 Key Breakthroughs
 
-## Abstract
+- **✅ Solves initial singularity** without exotic matter or modified gravity
+- **✅ 100% success rate** across 16 orders of magnitude in initial conditions  
+- **✅ NEC satisfied** throughout evolution - no energy condition violations
+- **✅ Perturbation-safe** - Mukhanov-Sasaki equations remain regular through bounce
+- **✅ Planck-compatible** - $n_s \approx 0.967$, $r \approx 0.003$, $A_s \approx 2.1\times 10^{-9}$
 
-We investigate a two-field cosmological model in a closed ($k=+1$) universe where the field space is endowed with a hyperbolic geometry. We demonstrate that the curvature of the field space introduces a kinetic coupling that exponentially suppresses the scalar field kinetic energy, allowing the spatial curvature to dominate and trigger a non-singular bounce. Crucially, the model satisfies the Null Energy Condition (NEC) throughout, with the bounce driven entirely by the positive spatial curvature—not by exotic physics.
+## 📁 Repository Structure
 
-## Key Results
+### 🚀 [Version 2: Robust Sigmoid Model (RECOMMENDED)](./v2/)
+**"Robust Non-Singular Bouncing Cosmology from Regularized Hyperbolic Field Space"**
 
-- **Ghost-free**: The model has positive-definite kinetic matrix for all finite field values
-- **NEC-satisfying**: $\rho + p \geq 0$ throughout the evolution
-- **Non-singular**: Scale factor remains positive: $a(t) \geq a_{\min} > 0$
-- **Predictions**: $r \approx 0.003-0.005$, $n_s \approx 0.96-0.97$, $f_{\rm NL}^{\rm local} \sim 1$
+* **Status**: Current, arXiv-submitted version
+* **Key Innovation**: Sigmoid metric $g_{\chi\chi} = (1+e^{-2\alpha\phi})^{-1}$ derived from first principles
+* **Breakthrough Results**:
+  - **Basin improvement**: $10^{21}\times$ wider than exponential metric
+  - **Full perturbation validation** through bounce
+  - **Trans-Planckian safety** - fluctuations remain classical
+  - **Publication-ready figures** and complete LaTeX paper
+* **Requirements**: Python 3.8+, NumPy, SciPy, Matplotlib
+* **Files**: `bounce.py`, `perturbations.py`, `generate_figures.py`, `main.tex`, `main.pdf`
 
-## The Mechanism
+### 📜 [Version 1: Exponential Model (LEGACY)](./v1/)
+**"Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry"**
 
-The key equations in a closed universe ($k = +1$):
+* **Status**: Archived proof-of-concept
+* **Limitations**: Narrow basin of attraction, perturbative unitarity issues at $\phi \to +\infty$
+* **Educational Value**: Demonstrates bounce mechanism with pure exponential metric $e^{2\alpha\phi}$
 
-**Friedmann constraint:**
-$$H^2 = \frac{\rho}{3M_{\rm Pl}^2} - \frac{1}{a^2}$$
+## 🚀 Quick Start (Version 2)
 
-**Acceleration equation:**
-$$\dot{H} = -\frac{\rho + p}{2M_{\rm Pl}^2} + \frac{1}{a^2}$$
-
-The $+1/a^2$ term from spatial curvature enables $\dot{H} > 0$ even when the NEC is satisfied!
-
-## Files
-
-- `main.tex` - LaTeX source of the paper
-- `Bouncing_Cosmology_by_Oleksandr_Kravchenko_OkMathOrg.pdf` - Compiled paper with embedded figures
-- `numerical_solution.py` - Python code for numerical solutions
-- `verify_christoffel.py` - Symbolic verification of field-space geometry
-- `bounce_closed.pdf` - Figure 1: Bounce solution
-- `kinetic_suppression.pdf` - Figure 2: Kinetic suppression mechanism
-
-## Dependencies and Installation
-
-* Python 3.x
-* `numpy`, `scipy`, `matplotlib` (for numerical solution)
-* `sympy` (only for symbolic verification script)
-
-**Install via pip:**
 ```bash
-pip install numpy scipy matplotlib sympy
+cd v2
+python bounce.py                    # Run comprehensive validation
+python generate_figures.py          # Generate publication figures
+pdflatex main.tex                   # Compile paper
 ```
 
-**Running the Code:**
-```bash
-python numerical_solution.py
-```
-This will generate all figures and print a summary of the bounce solution.
+## 📊 Validation Suite
 
-> **Note:** Variable names in `numerical_solution.py` will confuse you 😸
+The code automatically runs 10+ validation checks:
+- ✅ Background evolution through bounce
+- ✅ Friedmann constraint (error < $10^{-6}$)
+- ✅ Energy conditions (NEC, WEC)
+- ✅ Basin of attraction (16 orders of magnitude)
+- ✅ Perturbation robustness (20% noise tests)
+- ✅ Observable predictions vs Planck data
+- ✅ Trans-Planckian safety
+- ✅ Mukhanov-Sasaki regularity
 
-## Reference
+## 📚 Citation
 
-If you use this code in your research, please cite the following paper:
-
-**Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry** *Oleksandr Kravchenko* arXiv:2511.18522 [gr-qc]  
-https://arxiv.org/abs/2511.18522
-
-### Citation (BibTeX)
+Please cite our work:
 
 ```bibtex
 @article{Kravchenko2025,
-    title = {Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry},
+    title = {Robust Non-Singular Bouncing Cosmology from Regularized Hyperbolic Field Space},
     author = {Kravchenko, Oleksandr},
     year = {2025},
-    eprint = {2511.18522v1},
+    eprint = {2511.18522},
     archivePrefix = {arXiv},
     primaryClass = {gr-qc},
-    url = {https://arxiv.org/abs/2511.18522v1}
+    url = {https://arxiv.org/abs/2511.18522}
 }
 ```
 
-## Contact
+## 🤝 Contributing
 
-For questions or comments, please open an issue or contact the author at cosmology@okmath.org
+We welcome issues and discussions! Please use GitHub issues for:
+- Bug reports
+- Theoretical questions  
+- Suggestions for extensions
+- Numerical validation on different systems
+
+## 📧 Contact
+
+**Oleksandr Kravchenko**  
+- Email: cosmology@okmath.org
+- Website: https://okmath.org
+- GitHub: [@OkMathOrg/bouncing-cosmology](https://github.com/OkMathOrg/bouncing-cosmology)
+
+---
+
+*This work provides the first complete, robust, and observationally viable alternative to singular Big Bang cosmology using standard general relativity.*
