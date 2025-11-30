@@ -1,9 +1,10 @@
-# Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry
+# Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry (Version 1)
 
 **A ghost-free, NEC-satisfying cosmological model that replaces the Big Bang singularity with a geometric bounce.**
+> *Note: This is the legacy **Exponential Metric** model (v1). It successfully demonstrates the bounce mechanism but has known limitations regarding the basin of attraction size and perturbative unitarity at large field values. These issues have been rigorously resolved in the [**Robust Sigmoid Model (v2)**](../v2).*
 
-[![arXiv](https://img.shields.io/badge/arXiv-2511.18522-b31b1b.svg)](https://arxiv.org/abs/2511.18522)
-[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17684433.svg)](https://doi.org/10.5281/zenodo.17684433)
+[![arXiv](https://img.shields.io/badge/arXiv-2511.18522v1-b31b1b.svg)](https://arxiv.org/abs/2511.18522v1)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.17715607.svg)](https://doi.org/10.5281/zenodo.17715607)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python](https://img.shields.io/badge/Python-3.8%2B-blue)](https://www.python.org/)
 
@@ -76,13 +77,13 @@ https://arxiv.org/abs/2511.18522
     title = {Non-Singular Bouncing Cosmology from Hyperbolic Field Space Geometry},
     author = {Kravchenko, Oleksandr},
     year = {2025},
-    eprint = {2511.18522},
+    eprint = {2511.18522v1},
     archivePrefix = {arXiv},
     primaryClass = {gr-qc},
-    url = {https://arxiv.org/abs/2511.18522}
+    url = {https://arxiv.org/abs/2511.18522v1}
 }
 ```
 
 ## Contact
 
-For questions or comments, please open an issue or contact the author.
+For questions or comments, please open an issue or contact the author at cosmology@okmath.org
