@@ -10,9 +10,9 @@ import json
 import numpy as np
 
 def save_results_robust(results, filename):
-    """Сохранить результаты с правильной сериализацией"""
+    """Save results with correct serialization"""
     def convert_to_serializable(obj):
-        """Рекурсивно конвертировать объекты в сериализуемые"""
+        """Recursively convert objects to serializable"""
         if isinstance(obj, (np.floating, np.integer)):
             return float(obj)
         elif isinstance(obj, np.ndarray):
@@ -24,7 +24,7 @@ def save_results_robust(results, filename):
         elif isinstance(obj, (list, tuple)):
             return [convert_to_serializable(item) for item in obj]
         else:
-            # Пытаемся преобразовать в строку
+            # Try to convert to a string
             try:
                 return str(obj)
             except:
@@ -111,4 +111,5 @@ def main():
         print("Review the output above for details.")
 
 if __name__ == "__main__":
+
     main()
