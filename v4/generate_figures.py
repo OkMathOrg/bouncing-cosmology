@@ -249,14 +249,15 @@ def fig_background_evolution(bg):
     ax.set_ylabel(r'$\phi / M_{\rm Pl}$')
     _save(fig, 'bg_c_inflaton.pdf')
 
-    # (d) g_chichi saturation
+    # (d) g_chichi saturation: plot |1 - g| on log scale so the
+    # post-bounce convergence to canonical kinetic terms is actually
+    # visible.  Plotting g directly forces a matplotlib offset
+    # ("1e-9 + 9.9999999e-1") that obscures the saturation behavior.
+    one_minus_g = np.maximum(np.abs(1.0 - g), 1e-18)
     fig, ax = _new()
-    ax.plot(t_norm, g, color=C_BLUE, lw=2.0)
-    ax.axhline(1, color=C_GRAY, ls=':', alpha=0.7,
-               label=r'$g_{\chi\chi} = 1$ saturation')
+    ax.semilogy(t_norm, one_minus_g, color=C_BLUE, lw=2.0)
     ax.set_xlabel(r'$t \cdot \omega$')
-    ax.set_ylabel(r'$g_{\chi\chi}(\phi(t))$')
-    _legend(ax)
+    ax.set_ylabel(r'$|1 - g_{\chi\chi}(\phi(t))|$')
     _save(fig, 'bg_d_metric.pdf')
 
 
@@ -267,12 +268,18 @@ def fig_bounce_zoom(bg):
     from bounce import V, V0, omega
 
     i_b = bg['i_bounce']
+    a_min = bg['a_min']
+    t_bounce = bg['t'][i_b]
+    # Wide slice (energy panel), then a tight slice for the (a)/(b)
+    # bounce-region zooms.  Without the tight slice the parabolic
+    # minimum of a(t) is invisible, because post-bounce inflation
+    # raises a by ~10^8 within the wide window.
     width = max(500, len(bg['t']) // 20)
     sl = slice(max(0, i_b - width), min(len(bg['t']), i_b + width))
 
-    t = bg['t'][sl] * omega
-    a = bg['a'][sl]
-    H = bg['H'][sl] / omega
+    t_wide = (bg['t'][sl] - t_bounce) * omega
+    a_wide = bg['a'][sl]
+    H_wide = bg['H'][sl] / omega
     phi_s = bg['phi'][sl]
     phidot_s = bg['phi_dot'][sl]
     chidot_s = bg['chi_dot'][sl]
@@ -281,30 +288,47 @@ def fig_bounce_zoom(bg):
     K_phi = 0.5 * phidot_s ** 2
     K_chi = 0.5 * g_s * chidot_s ** 2
 
-    # (a) scale factor near bounce
+    # Tight zoom for panels (a) and (b): restrict to |t - t_bounce| <= 3/omega.
+    # This is ~3 inflationary Hubble times and is just wide enough to show
+    # the parabolic minimum of a(t) and the H = 0 crossing without being
+    # swamped by the rapid post-bounce inflationary growth.
+    tight_mask = np.abs(t_wide) <= 3.0
+    t_tight = t_wide[tight_mask]
+    a_tight = a_wide[tight_mask]
+    H_tight = H_wide[tight_mask]
+
+    # (a) scale factor near bounce — normalize by a_min so the parabolic
+    # minimum is visible on a linear scale.
     fig, ax = _new()
-    ax.plot(t, a, color=C_BLUE, lw=2.2)
-    ax.set_xlabel(r'$t \cdot \omega$')
-    ax.set_ylabel(r'$a$')
+    ax.plot(t_tight, a_tight / a_min, color=C_BLUE, lw=2.2)
+    ax.axvline(0, color=C_GRAY, ls=':', alpha=0.6,
+               label=r'bounce ($H=0$)')
+    ax.set_xlabel(r'$(t - t_{\rm bounce})\cdot \omega$')
+    ax.set_ylabel(r'$a / a_{\rm min}$')
+    _legend(ax, loc='upper center')
     _save(fig, 'bz_a_scale_factor.pdf')
 
     # (b) Hubble through zero
     fig, ax = _new()
-    ax.plot(t, H, color=C_BLUE, lw=2.2)
+    ax.plot(t_tight, H_tight, color=C_BLUE, lw=2.2)
     ax.axhline(0, color=C_GRAY, ls='-', alpha=0.5)
-    ax.set_xlabel(r'$t \cdot \omega$')
+    ax.axvline(0, color=C_GRAY, ls=':', alpha=0.6)
+    ax.set_xlabel(r'$(t - t_{\rm bounce})\cdot \omega$')
     ax.set_ylabel(r'$H/\omega$')
     _save(fig, 'bz_b_hubble.pdf')
 
-    # (c) energy components
+    # (c) energy components — keep the wider window so post-bounce decay
+    # of the kinetic terms is visible, but use the same t - t_bounce
+    # centering as panels (a)/(b).
     fig, ax = _new()
-    ax.semilogy(t, np.maximum(V_s, 1e-30), color=C_BLUE,  lw=2.2,
+    ax.semilogy(t_wide, np.maximum(V_s, 1e-30), color=C_BLUE,  lw=2.2,
                 label=r'potential $V$')
-    ax.semilogy(t, np.maximum(K_phi, 1e-30), color=C_RED, lw=2.0, ls='--',
+    ax.semilogy(t_wide, np.maximum(K_phi, 1e-30), color=C_RED, lw=2.0, ls='--',
                 label=r'kinetic $\frac{1}{2}\dot\phi^2$')
-    ax.semilogy(t, np.maximum(K_chi, 1e-30), color=C_GREEN, lw=2.0, ls=':',
+    ax.semilogy(t_wide, np.maximum(K_chi, 1e-30), color=C_GREEN, lw=2.0, ls=':',
                 label=r'kinetic $\frac{1}{2} g_{\chi\chi}\dot\chi^2$')
-    ax.set_xlabel(r'$t \cdot \omega$')
+    ax.axvline(0, color=C_GRAY, ls=':', alpha=0.6)
+    ax.set_xlabel(r'$(t - t_{\rm bounce})\cdot \omega$')
     ax.set_ylabel(r'energy density (in $M_{\rm Pl}^4$)')
     _legend(ax, loc='upper center', bbox_to_anchor=(0.5, -0.18),
             ncol=3, fontsize=10)
@@ -374,7 +398,7 @@ def fig_basin_of_attraction():
     ax.set_xlabel(r'$\log_{10}(\dot\chi_0 / \sqrt{V_0})$')
     ax.set_yticks([])
     ax.set_ylim(0, 1.15)
-    ax.set_title(f'overall success rate: {rate:.0f}\\% ({int(success.sum())}/{len(results)})',
+    ax.set_title(f'overall success rate: {rate:.0f}% ({int(success.sum())}/{len(results)})',
                  pad=8)
     _legend(ax, loc='upper right')
     _save(fig, 'ba_a_success_map.pdf')
@@ -566,7 +590,7 @@ def fig_perturbation_analysis(pert_results):
                 'o-', color=C_BLUE, lw=1.6, ms=7,
                 markerfacecolor='white', markeredgewidth=1.4)
     ax.axhline(0.01, color=C_RED, ls='--', lw=1.8,
-               label=r'1\% threshold')
+               label=r'1% threshold')
     ax.set_xscale('log')
     ax.set_xlabel(r'$k$')
     ax.set_ylabel(r'MC relative error (median)')
@@ -630,7 +654,7 @@ def fig_perturbation_analysis(pert_results):
                         'o-', color=C_BLUE, lw=1.6, ms=7,
                         markerfacecolor='white', markeredgewidth=1.4)
     ax.axhline(0.01, color=C_RED, ls='--', lw=1.8,
-               label=r'1\% threshold')
+               label=r'1% threshold')
     ax.axhline(1e-4, color=C_GREEN, ls=':', lw=1.6,
                label=r'paper bound $T_{RS} < 10^{-4}$')
     ax.set_xscale('log')
